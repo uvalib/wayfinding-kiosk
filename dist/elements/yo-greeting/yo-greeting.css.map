@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": ";;;AAIA,KAAM;EACJ,OAAO,EAAE,KAAK",
+"sources": ["../../yo-greeting/yo-greeting.scss"],
+"names": [],
+"file": "yo-greeting.css"
+}
