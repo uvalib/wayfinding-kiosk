@@ -13,13 +13,139 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     :host {
       display: block;
     }
+
+    tr {
+      height:220px;
+    }
+
+    paper-material {
+      /*
+      @apply(--layout-flex);
+      @apply(--layout-wrap);
+      overflow:auto;
+      height:90%;
+      white-space: pre-wrap;
+      */
+      overflow: visible;
+      white-space: nowrap;
+      display: inline-block;
+      position: relative;
+      background-color: white;
+      width: 0;
+      margin: 8px;
+      border-radius: 2px;
+      font-weight: 300;
+      cursor: default;
+      vertical-align: top;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -webkit-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      cursor: pointer;
+    }
+
+    paper-material .image-wrapper {
+      padding-top: 100%;
+      border-radius: 2px 2px 0 0;
+      position: relative;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    paper-material .image-inner-wrapper {
+      position: absolute;
+      top: 0;
+      border-radius: 2px 2px 0 0;
+      width: 100%;
+      height: 100%;
+    }
+
+
+    paper-material h2 {
+      width:50%;
+      overflow:hidden;
+
+    }
+
+    .fade-out {
+    position: relative;
+    white-space: nowrap;
+}
+    
+      .fade-out:after {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 30px;
+    content: "";
+    background-image: -webkit-gradient(linear,left top,right top,color-stop(0%,rgba(255,255,255,0)),color-stop(100%,rgba(255,255,255,1)));
+    background-image: -webkit-linear-gradient(left,rgba(255,255,255,0),rgba(255,255,255,1));
+    background-image: -moz-linear-gradient(left,rgba(255,255,255,0),rgba(255,255,255,1));
+    background-image: -ms-linear-gradient(left,rgba(255,255,255,0),rgba(255,255,255,1));
+    background-image: -o-linear-gradient(left,rgba(255,255,255,0),rgba(255,255,255,1));
+    background: linear-gradient(to right,rgba(255,255,255,0),rgba(255,255,255,1));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#00ffffff',EndColorStr='#ffffff');
+}
+    
+
+    /deep/ .v-grid-cell, /deep/ .v-grid-row {
+      height: 220px !important;
+      background-color: inherit !important;
+    }
+
+    /deep/ .v-grid:focus {
+      outline:none;
+    }
   </style>
   <template>
-    <ul>
+    <uvalib-catalog id="catalog" auto availability directions items="{{items}}" facets="{{facets}}" count="{{count}}" query="{{query}}" page="{{page}}" per-page="20" sort-order="{{sort}}" facet-limits-inc='{"library":"Alderman","format":["Visual Materials","Video Quadraplex","Video Other","VHS","Thesis/Dissertation","Physical Object","Periodical","Other Media","Newspaper","Musical Score","Mixed Materials","Microform","Map","Manuscript","LP","Looseleaf","Large Print","Journal/Magazine","Government Document","Globe","Filmstrip","Film","Equipment","DVD","Computer Resource","Computer Media","CD","Broadside","Braille","Book","Blu-Ray","Atlas","Archive"]}' more="{{more}}" on-uvalib-catalog-fetched-results="catalog_fetched"></uvalib-catalog>
+    
+    <div class="header">
+      <h2 class="title">Recently added <span>{{query}}</span></h2>
+    </div>
+    
+    <v-grid id="grid">
+        <table>
+          <colgroup height="220">
+            <col width="220" height="220">
+            <col width="220">
+            <col width="220">
+            <col width="220">
+            <col width="220">
+          </colgroup><tbody>
+          <template is="dom-repeat" items="{{items}}">
+            <tr style="height:220px">
+              <td>
+                <paper-material elevation="1">
+                  <div class="image-wrapper">
+                    <div class="image-inner-wrapper"><img class="image" src="{{item.cover_image_url}}" alt=""></div>
+                  </div>
+                  <div class="details">
+                    <div class="details-inner">
+                      <a class="title fade-out tooltip " href="">{{item.title}}</a>
+                      <a class="sub-title fade-out tooltip ">{{item.subtitle}}</a>
+                    </div>
+                  </div>
+                </paper-material>
+              </td>
+              <td>{{item.title}}</td>
+              <td>{{item.title}}</td>
+              <td>{{item.title}}</td>
+              <td>{{item.title}}</td>
+            </tr>
+          </template>
+          </tbody>
+        </table>
+      </v-grid>
+<!--    <ul>
       <template is="dom-repeat" items="{{items}}">
         <li><span class="paper-font-body1">{{item}}</span></li>
       </template>
-    </ul>
+    </ul> -->
   </template>
 
   <script>
@@ -30,9 +156,40 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           items: {
             type: Array,
             notify: true,
-          }
+          },
+          formattedItems: {
+            type: Array
+          },
+          query: {
+            type: String,
+            value: ""
+          },
+//          facet_limits_inc: {
+//            type: Object,
+//            default: {
+//              library: "Alderman",
+//              format: [
+//                "Visual Materials","Video Quadraplex","Video Other","VHS","Thesis/Dissertation",
+//                "Physical Object","Periodical","Other Media","Newspaper","Musical Score",
+//                "Mixed Materials","Microform","Map","Manuscript","LP","Looseleaf","Large Print",
+//                "Journal/Magazine","Government Document","Globe","Filmstrip","Film","Equipment",
+//                "DVD","Computer Resource","Computer Media","CD","Broadside","Braille","Book",
+//                "Blu-Ray","Atlas","Archive"
+//              ]
+//            }
+//          }
+        },
+        attached: function(){
+          this.$.grid.header.hidden=true;
+          this.$.grid.selection.mode="disabled";
         },
         ready: function() {
+//          var grid = document.querySelector('v-grid');
+//          grid.header.hidden=true;
+//          grid.addEventListener('select', function(){
+//            alert('selected grid row!');
+//          });
+/*
           this.items = [
             'Responsive Web App boilerplate',
             'Iron Elements and Paper Elements',
@@ -41,6 +198,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             'Routing with Page.js',
             'Offline support with the Platinum Service Worker Elements'
           ];
+*/
+        },
+        catalog_fetched: function(){
+          this.$.catalog.parseAvailbility("Alderman");
+          this.foo="bar";
         }
       });
     })();

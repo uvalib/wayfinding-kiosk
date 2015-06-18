@@ -104,6 +104,60 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     margin-left: 48px;
   }
 
+
+
+  #search-lib {
+    @apply(--layout-flex);
+    max-width:800px;
+    position: relative;
+  }
+
+  #search-lib iron-icon {
+    position: absolute;
+    top: 13px;
+    left: 16px;
+    z-index: 2;
+
+    display: inline-block;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    fill: currentcolor;
+    height: 24px;
+    width: 24px;
+  }
+
+  #search-lib .material-search {
+    background-color: rgba(255,255,255,0.16);
+    transition: background-color 0.2s;
+    padding: 0 16px 0 0;
+    box-sizing: border-box;
+    height: 50px;
+    border: none;
+    border-radius: 3px;
+    width: 100%;
+    color: rgba(255,255,255,0.7);
+    font-size: 15px;
+    font-weight: 400;
+    text-indent: 68px;
+    outline:none;
+    -webkit-appearance: textfeild;
+    -webkit-rtl-ordering: logical;
+    -webkit-user-select: text;
+    cursor: auto;
+  }
+
+  #search-lib .material-search:focus {
+    color: rgb(255,255,255);
+    background-color: rgba(255,255,255,0.24);
+  }
+
+/*
+  #search-lib paper-input {
+    @apply(--layout-flex);
+    --paper-input-container-input-color: white;
+  }
+*/
+
   /* Height of the scroll area */
   .content {
     height: 900px;
