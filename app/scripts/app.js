@@ -43,4 +43,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
   };
 
+  app.onSearchFocus = function(){
+    console.log('search box focused!');
+    page('/results')
+  };
+
+  app.startSearchModal = function(){
+    console.log('started a catalog fetch');
+    document.getElementById('searchmodal').open();
+  };
+  app.endSearchModal = function(){
+    console.log('ended a catalog fetch');
+    document.getElementById('searchmodal').close();
+  };
+
 })(document);

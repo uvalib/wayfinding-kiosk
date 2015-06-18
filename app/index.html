@@ -79,9 +79,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <span>Books</span>
           </a>
 
+          <a data-route="map" href="/map">
+            <iron-icon icon="maps:map"></iron-icon>
+            <span>Map</span>
+          </a>
+
           <a data-route="contact" href="/help">
             <iron-icon icon="help"></iron-icon>
             <span>Help</span>
+          </a>
+
+          <a data-route="feedback" href="/feedback">
+            <iron-icon icon="feedback"></iron-icon>
+            <span>Feedback</span>
           </a>
         </paper-menu>
       </div>
@@ -101,7 +111,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <!-- Application name -->
           <div class="middle paper-font-display2 app-name">{{page_title}}</div>
           
-          <div id="search-lib" class="bottom"><iron-icon class="search-icon" icon="search" aria-hidden="true" alt=""></iron-icon><input is="iron-input" class="material-search label-input-label" role="search" placeholder="Find a book in Alderman Library" aria-label="Search music" no-focus="" bind-value="{{query}}"></div>
+          <div id="search-lib" class="bottom"><iron-icon class="search-icon" icon="search" aria-hidden="true" alt=""></iron-icon><input is="iron-input" class="material-search label-input-label" role="search" placeholder="Find a book in Alderman Library" aria-label="Search music" on-focus="onSearchFocus" bind-value="{{query}}"></div>
           <!--
           <div class="bottom" id="search-lib">
             <iron-icon icon="search"></iron-icon>
@@ -113,6 +123,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!-- Main Content -->
         <div class="content">
+          <paper-dialog id="searchmodal" modal role="dialog" tabindex="-1" style="outline: none; display:none"></paper-dialog>
           <iron-pages attr-for-selected="data-route" selected="{{route}}">
 
             <section data-route="home">
@@ -125,35 +136,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <p class="paper-font-body2">This is another card.</p>
               </paper-material>
 
-              <paper-material elevation="1" class="paper-font-body2">
-                <h1 id="license">License</h1>
-                <p>Everything in this repo is BSD style license unless otherwise specified.</p>
-                <p>Copyright (c) 2015 The Polymer Authors. All rights reserved.</p>
-                <p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
-                <ul>
-                <li>Redistributions of source code must retain the above copyright
-                notice, this list of conditions and the following disclaimer.</li>
-                <li>Redistributions in binary form must reproduce the above
-                copyright notice, this list of conditions and the following disclaimer
-                in the documentation and/or other materials provided with the
-                distribution.</li>
-                <li>Neither the name of Google Inc. nor the names of its
-                contributors may be used to endorse or promote products derived from
-                this software without specific prior written permission.</li>
-                </ul>
-                <p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
-              </paper-material>
-
             </section>
 
             <section data-route="results">
               <h2>Query: <span>{{query}}</span></h2>
-              <my-list query="{{query}}"></my-list>
-              <!--<paper-material elevation="1">
-                <h2 class="paper-font-display2">Users</h2>
-                <p>This is the users section</p>
-                <a href="/users/Rob">Rob</a>
-              </paper-material>-->
+              <my-list query="{{query}}" on-uvalib-catalog-started-fetch="startSearchModal" on-uvalib-catalog-finished-fetch="endSearchModal"></my-list>
             </section>
 
             <section data-route="result-info">
@@ -165,10 +152,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </paper-material>
             </section>
 
+            <section data-route="map">
+              <paper-material elevation="1">
+                <uvalib-floorplan selectedfloor="{{selectedFloor}}" floors="{{floors}}" selectedstep="{{selectedStep}}" dests="{{steps}}"></uvalib-floorplan>
+                <uvalib-floorplan id="floorplan"></uvalib-floorplan>
+              </paper-material>
+            </section>
+
             <section data-route="help">
               <paper-material elevation="1">
                 <h2 class="paper-font-display2">Help</h2>
                 <p>This is the help section</p>
+              </paper-material>
+            </section>
+
+            <section data-route="feedback">
+              <paper-material elevation="1">
+                <h2 class="paper-font-display2">Feedback</h2>
+                <p>Please leave feedback about this Kiosk application</p>
               </paper-material>
             </section>
 

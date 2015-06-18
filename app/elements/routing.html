@@ -31,9 +31,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       app.params = data.params;
     });
 
+    page('/map', function(){
+      app.route = 'map';
+      app.page_title = "Library Map";
+      document.getElementById('floorplan').SVGhelpers()
+    });
+
     page('/help', function () {
       app.route = 'help';
       app.page_title = "Help";
+    });
+
+    page('/feedback', function(){
+      app.route = 'feedback';
+      app.page_title = "Feedback";
     });
 
     // add #! before urls

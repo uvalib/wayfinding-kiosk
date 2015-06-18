@@ -8,7 +8,8 @@
     "neon-elements": "PolymerElements/neon-elements#1.0.0",
     "page": "visionmedia/page.js#~1.6.3",
     "vaadin-components": "master",
-    "uvalib-catalog": "uvalib-components/uvalib-catalog"
+    "uvalib-catalog": "uvalib-components/uvalib-catalog",
+    "uvalib-floorplan": "uvalib-components/uvalib-floorplan"
   },
   "devDependencies": {
     "web-component-tester": "*",
