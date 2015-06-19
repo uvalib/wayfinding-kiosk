@@ -68,6 +68,61 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       width: 100%;
     }
 
+    /deep/ .v-grid paper-material .details {
+      padding: 16px;
+      position: relative;
+      background-color: white;
+      height: 66px;
+    }
+
+    /deep/ .v-grid paper-material .details-inner {
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      -webkit-flex-wrap: wrap;
+      flex-wrap: wrap;
+      position: relative;
+      -webkit-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+    }
+
+    /deep/ .v-grid paper-material .title {
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      font-size: 15px;
+      line-height: 18px;
+      font-weight: 400;
+      color: #212121;
+      text-decoration: none;
+      cursor: pointer;
+      outline: none;
+      width: 0px;
+      -webkit-flex: 1 1 100%;
+      -ms-flex: 1 1 100%;
+      flex: 1 1 100%;
+    }
+
+    /deep/ .v-grid paper-material .sub-title {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 13px;
+    line-height: 16px;
+    height: 16px;
+    font-weight: 400;
+    color: #616161;
+    margin-top: 4px;
+    text-decoration: none;
+    outline: none;
+    width: 0px;
+    -webkit-flex: 1 1 100%;
+    -ms-flex: 1 1 100%;
+    flex: 1 1 100%;
+}
+
     /deep/ .v-grid .fade-out {
       position: relative;
       white-space: nowrap;
@@ -109,10 +164,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </style>
   <template>
     <uvalib-catalog id="catalog" auto availability directions items="{{items}}" facets="{{facets}}" count="{{count}}" query="{{query}}" page="{{page}}" per-page="30" sort-order="{{sort}}" facet-limits-inc='{"library":"Alderman","format":["Visual Materials","Video Quadraplex","Video Other","VHS","Thesis/Dissertation","Physical Object","Periodical","Other Media","Newspaper","Musical Score","Mixed Materials","Microform","Map","Manuscript","LP","Looseleaf","Large Print","Journal/Magazine","Government Document","Globe","Filmstrip","Film","Equipment","DVD","Computer Resource","Computer Media","CD","Broadside","Braille","Book","Blu-Ray","Atlas","Archive"]}' more="{{more}}" on-uvalib-catalog-fetched-results="catalog_fetched"></uvalib-catalog>
-    
+   
+<!--    
     <div class="header">
       <h2 class="title">Recently added <span>{{query}}</span></h2>
     </div>
+-->
     
 <v-grid id="grid">
   <table>
@@ -260,7 +317,23 @@ var renderer = function(cell) {
   img.setAttribute("src",cell.data.cover_image_url)
   imgInWrp.appendChild(img);
   imgWrp.appendChild(imgInWrp);
+  var det = document.createElement("div");
+  det.setAttribute("class","details");
+  var detIn = document.createElement("div");
+  detIn.setAttribute("class","details-inner");
+  var title = document.createElement("div");
+  title.setAttribute("class","title fade-out");
+  title.appendChild(document.createTextNode(cell.data.title[0]));
+  detIn.appendChild(title);
+  if(cell.data.subtitle && cell.data.subtitle.length) {
+    var subTitle = document.createElement("div");
+    subTitle.setAttribute("class","sub-title fade-out");
+    subTitle.appendChild(document.createTextNode(cell.data.subtitle[0]));
+    detIn.appendChild(subTitle);
+  }
+  det.appendChild(detIn);
   paper.appendChild(imgWrp);
+  paper.appendChild(det);
   cell.element.appendChild(paper); 
 };
 
