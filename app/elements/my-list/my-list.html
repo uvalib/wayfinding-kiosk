@@ -14,7 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       display: block;
     }
 
-    /deep/ paper-material {
+    /deep/ .v-grid paper-material {
       
       /*
       @apply(--layout-flex);
@@ -23,10 +23,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       height:90%;
       white-space: pre-wrap;
       */
-      padding: inherit !important;
+      padding: 0px !important;
       height: 90% !important;
 
-      overflow: visible !important;
+      overflow: auto !important;
       white-space: nowrap !important;
       display: inline-block !important;
       position: relative !important;
@@ -48,7 +48,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       cursor: pointer !important;
     }
 
-    paper-material .image-wrapper {
+    /deep/ .v-grid paper-material .image-wrapper {
       padding-top: 100%;
       border-radius: 2px 2px 0 0;
       position: relative;
@@ -56,7 +56,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       width: 100%;
     }
 
-    paper-material .image-inner-wrapper {
+    /deep/ .v-grid paper-material .image-inner-wrapper {
       position: absolute;
       top: 0;
       border-radius: 2px 2px 0 0;
@@ -64,23 +64,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       height: 100%;
     }
 
-    paper-material .image-inner-wrapper img {
+    /deep/ .v-grid paper-material .image-inner-wrapper img {
       width: 100%;
     }
 
-
-    paper-material h2 {
-      width:50%;
-      overflow:hidden;
-
+    /deep/ .v-grid .fade-out {
+      position: relative;
+      white-space: nowrap;
     }
-
-    .fade-out {
-    position: relative;
-    white-space: nowrap;
-}
     
-      .fade-out:after {
+    /deep/ .v-grid .fade-out:after {
     display: block;
     position: absolute;
     top: 0;
@@ -101,17 +94,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       height:220px !important;
     }
 
+    /deep/ .v-grid {
+      height:30000px !important;
+    }
+
     /deep/ .v-grid-cell, /deep/ .v-grid-row {
       height: 300px !important;
       background-color: inherit !important;
     }
 
     /deep/ .v-grid:focus {
-      outline:none;
+      outline:none !important;
     }
   </style>
   <template>
-    <uvalib-catalog id="catalog" auto availability directions items="{{items}}" facets="{{facets}}" count="{{count}}" query="{{query}}" page="{{page}}" per-page="100" sort-order="{{sort}}" facet-limits-inc='{"library":"Alderman","format":["Visual Materials","Video Quadraplex","Video Other","VHS","Thesis/Dissertation","Physical Object","Periodical","Other Media","Newspaper","Musical Score","Mixed Materials","Microform","Map","Manuscript","LP","Looseleaf","Large Print","Journal/Magazine","Government Document","Globe","Filmstrip","Film","Equipment","DVD","Computer Resource","Computer Media","CD","Broadside","Braille","Book","Blu-Ray","Atlas","Archive"]}' more="{{more}}" on-uvalib-catalog-fetched-results="catalog_fetched"></uvalib-catalog>
+    <uvalib-catalog id="catalog" auto availability directions items="{{items}}" facets="{{facets}}" count="{{count}}" query="{{query}}" page="{{page}}" per-page="30" sort-order="{{sort}}" facet-limits-inc='{"library":"Alderman","format":["Visual Materials","Video Quadraplex","Video Other","VHS","Thesis/Dissertation","Physical Object","Periodical","Other Media","Newspaper","Musical Score","Mixed Materials","Microform","Map","Manuscript","LP","Looseleaf","Large Print","Journal/Magazine","Government Document","Globe","Filmstrip","Film","Equipment","DVD","Computer Resource","Computer Media","CD","Broadside","Braille","Book","Blu-Ray","Atlas","Archive"]}' more="{{more}}" on-uvalib-catalog-fetched-results="catalog_fetched"></uvalib-catalog>
     
     <div class="header">
       <h2 class="title">Recently added <span>{{query}}</span></h2>
@@ -120,11 +117,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <v-grid id="grid">
   <table>
     <colgroup>
-      <col width="220">
-      <col width="220">
-      <col width="220">
-      <col width="220">
-      <col width="220">
+      <template is="dom-repeat" items="{{cols}}">
+        <col width="220">
+      </template>
     </colgroup>
   </table>
 </v-grid>
@@ -192,7 +187,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           },
           query: {
             type: String,
-            value: ""
+            value: "",
+            observer: "queryChanged"
           },
 //          facet_limits_inc: {
 //            type: Object,
@@ -214,7 +210,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.$.grid.selection.mode="disabled";
         },
         ready: function() {
-          this.colCount=5;
+          this.colCount=7;
           this.cols=new Array(this.colCount);
           this.rows = []; //[[{title:"foo"},{title:"bar"},{title:"baz"},{title:"foobar"},{title:"foobaz"}],
 //              [{title:"foo"},{title:"bar"},{title:"baz"},{title:"foobar"},{title:"foobaz"}],
@@ -235,6 +231,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           ];
 */
         },
+        queryChanged: function(){
+          this.rows=[];
+        },
 //        rows:[[{title:"foo"},{title:"bar"},{title:"baz"},{title:"foobar"},{title:"foobaz"}],
 //              [{title:"foo"},{title:"bar"},{title:"baz"},{title:"foobar"},{title:"foobaz"}],
 //              [{title:"foo"},{title:"bar"},{title:"baz"},{title:"foobar"},{title:"foobaz"}]],
@@ -253,6 +252,15 @@ var renderer = function(cell) {
   var paper = document.createElement("paper-material");
   paper.setAttribute("elevation",1);
   paper.setAttribute("class","stlye-scope");
+  var imgWrp = document.createElement("div");
+  imgWrp.setAttribute("class","image-wrapper");
+  var imgInWrp = document.createElement("div");
+  imgInWrp.setAttribute("class","image-inner-wrapper");
+  var img = document.createElement("img");
+  img.setAttribute("src",cell.data.cover_image_url)
+  imgInWrp.appendChild(img);
+  imgWrp.appendChild(imgInWrp);
+  paper.appendChild(imgWrp);
   cell.element.appendChild(paper); 
 };
 
@@ -269,12 +277,9 @@ var renderer = function(cell) {
 //                </paper-material>
 
 
-
-this.$.grid.columns[0].renderer = renderer;
-this.$.grid.columns[1].renderer = renderer;
-this.$.grid.columns[2].renderer = renderer;
-this.$.grid.columns[3].renderer = renderer;
-this.$.grid.columns[4].renderer = renderer;
+for (var i=0; i<this.colCount; i++) {
+  this.$.grid.columns[i].renderer = renderer;
+}
 this.$.grid.data.source = this.rows;
 
 
