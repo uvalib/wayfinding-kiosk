@@ -32,8 +32,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     drawerPanel.forceNarrow = true;
 
     var toolbar = document.querySelector('#mainToolbar');
-    toolbar.bottomJustify = "around";
+    toolbar.bottomJustify = 'around';
   });
+
+  app.back2results = function(){
+    page('/results');
+  };
+
+  app.itemSelected = function(){
+    console.log('item has been selected, route to directions');
+    page('/map');
+  };
 
   // Close drawer after menu item is selected if drawerPanel is narrow
   app.onMenuSelect = function() {
@@ -45,7 +54,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   app.onSearchFocus = function(){
     console.log('search box focused!');
-    page('/results')
+    page('/results');
   };
 
   app.startSearchModal = function(){
@@ -56,5 +65,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     console.log('ended a catalog fetch');
     document.getElementById('searchmodal').close();
   };
+
+
 
 })(document);

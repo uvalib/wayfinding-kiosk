@@ -17,34 +17,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     // More info: https://visionmedia.github.io/page.js/
     page('/', function () {
       app.route = 'home';
-      app.page_title = 'Kiosk Home';
+      app.pageTitle = 'Kiosk Home';
     });
 
     page('/results', function () {
       app.route = 'results';
-      app.page_title = "Books";
+      app.pageTitle = 'Books';
     });
 
-    page('/results/:name', function (data) {
-      app.route = 'result-info';
-      app.page_title = "User Info";
+    page('/results/:id', function (data) {
+      app.route = 'map';
+      app.pageTitle = 'Find Book';
       app.params = data.params;
     });
 
     page('/map', function(){
       app.route = 'map';
-      app.page_title = "Library Map";
-      document.getElementById('floorplan').SVGhelpers()
+      app.pageTitle = 'Library Map';
+      window.scrollTo(0,0);
+      document.getElementById('floorplan').SVGhelpers();
     });
 
     page('/help', function () {
       app.route = 'help';
-      app.page_title = "Help";
+      app.pageTitle = 'Help';
     });
 
     page('/feedback', function(){
       app.route = 'feedback';
-      app.page_title = "Feedback";
+      app.pageTitle = 'Feedback';
     });
 
     // add #! before urls

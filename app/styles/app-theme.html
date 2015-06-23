@@ -158,7 +158,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   }
 */
 
-  [data-route="map"] paper-material {
+  #map-section {
+    overflow:hidden;
+    @apply(--layout-horizontal);
+  }
+
+  #map-section #directions-box {
+    @apply(--layout-flex-auto);
+    min-width: 330px;
+  }
+
+  #map-section #floorplan-box {
+    @apply(--layout-flex-none);
+  }
+  
+  #map-section paper-material {
+    overflow:hidden;
     height: 900px;
   }
 

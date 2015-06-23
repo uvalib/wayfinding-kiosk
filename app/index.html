@@ -83,7 +83,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <iron-icon icon="maps:map"></iron-icon>
             <span>Map</span>
           </a>
-
+<!--
           <a data-route="contact" href="/help">
             <iron-icon icon="help"></iron-icon>
             <span>Help</span>
@@ -93,6 +93,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <iron-icon icon="feedback"></iron-icon>
             <span>Feedback</span>
           </a>
+-->
         </paper-menu>
       </div>
       <paper-header-panel main mode="standard">
@@ -109,7 +110,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           -->
 
           <!-- Application name -->
-          <div class="middle paper-font-display2 app-name">{{page_title}}</div>
+          <div class="middle paper-font-display2 app-name">{{pageTitle}}</div>
           
           <div id="search-lib" class="bottom"><iron-icon class="search-icon" icon="search" aria-hidden="true" alt=""></iron-icon><input is="iron-input" class="material-search label-input-label" role="search" placeholder="Find a book in Alderman Library" aria-label="Search music" on-focus="onSearchFocus" bind-value="{{query}}"></div>
           <!--
@@ -123,7 +124,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!-- Main Content -->
         <div class="content">
-          <paper-dialog id="searchmodal" modal role="dialog" tabindex="-1" style="outline: none; display:none"></paper-dialog>
           <iron-pages attr-for-selected="data-route" selected="{{route}}">
 
             <section data-route="home">
@@ -139,8 +139,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </section>
 
             <section data-route="results">
+              <paper-action-dialog backdrop autoCloseDisabled layered="false">
+              <paper-dialog id="searchmodal" modal role="dialog" tabindex="-1" style="outline: none; display:none"></paper-dialog>
               <!--<h2>Query: <span>{{query}}</span></h2>-->
-              <my-list query="{{query}}" on-uvalib-catalog-started-fetch="startSearchModal" on-uvalib-catalog-finished-fetch="endSearchModal"></my-list>
+              <my-list query="{{query}}" on-uvalib-catalog-started-fetch="startSearchModal" on-uvalib-catalog-finished-fetch="endSearchModal" selected-item="{{selectedItem}}" on-item-selected="itemSelected"></my-list>
             </section>
 
             <section data-route="result-info">
@@ -152,8 +154,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </paper-material>
             </section>
 
-            <section data-route="map">
-              <paper-material elevation="1">
+            <section id="map-section" data-route="map">
+              <template is="dom-if" if="{{selectedItem}}">
+                <paper-material elevation="1" id="directions-box">
+                  <paper-button tabindex="0" raised on-tap="back2results"><iron-icon icon="arrow-back"></iron-icon>Back to Results</paper-button>
+                  <!--<uvalib-directions-list selected-item="{{selectedItem}}"></uvalib-directions-list>-->
+                </paper-material>
+              </template>
+              <paper-material elevation="1" id="floorplan-box">
                 <uvalib-floorplan id="floorplan"></uvalib-floorplan>
               </paper-material>
             </section>

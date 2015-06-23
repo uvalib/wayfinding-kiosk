@@ -14,15 +14,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       display: block;
     }
 
-    /deep/ .v-grid paper-material {
+    paper-material {
       
-      /*
-      @apply(--layout-flex);
-       @apply(--layout-wrap); 
-      overflow:auto;
-      height:90%;
-      white-space: pre-wrap;
-      */
       padding: 0px !important;
       height: 90% !important;
 
@@ -48,7 +41,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       cursor: pointer !important;
     }
 
-    /deep/ .v-grid paper-material .image-wrapper {
+    .row {
+      @apply(--layout-horizontal);
+    }
+
+    paper-material .image-wrapper {
       padding-top: 100%;
       border-radius: 2px 2px 0 0;
       position: relative;
@@ -56,7 +53,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       width: 100%;
     }
 
-    /deep/ .v-grid paper-material .image-inner-wrapper {
+    paper-material .image-inner-wrapper {
       position: absolute;
       top: 0;
       border-radius: 2px 2px 0 0;
@@ -64,18 +61,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       height: 100%;
     }
 
-    /deep/ .v-grid paper-material .image-inner-wrapper img {
+    paper-material .image-inner-wrapper img {
       width: 100%;
     }
 
-    /deep/ .v-grid paper-material .details {
+    paper-material .details {
       padding: 16px;
       position: relative;
       background-color: white;
-      height: 66px;
+      height: 80px;
     }
 
-    /deep/ .v-grid paper-material .details-inner {
+    paper-material .details-inner {
       display: -webkit-flex;
       display: -ms-flexbox;
       display: flex;
@@ -88,7 +85,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       flex: 1;
     }
 
-    /deep/ .v-grid paper-material .title {
+    paper-material .title {
       display: block;
       overflow: hidden;
       white-space: nowrap;
@@ -105,132 +102,117 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       flex: 1 1 100%;
     }
 
-    /deep/ .v-grid paper-material .sub-title {
-    display: block;
-    overflow: hidden;
-    white-space: nowrap;
-    font-size: 13px;
-    line-height: 16px;
-    height: 16px;
-    font-weight: 400;
-    color: #616161;
-    margin-top: 4px;
-    text-decoration: none;
-    outline: none;
-    width: 0px;
-    -webkit-flex: 1 1 100%;
-    -ms-flex: 1 1 100%;
-    flex: 1 1 100%;
-}
+    paper-material .sub-title {
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      font-size: 13px;
+      line-height: 16px;
+      height: 16px;
+      font-weight: 400;
+      color: #616161;
+      margin-top: 4px;
+      text-decoration: none;
+      outline: none;
+      width: 0px;
+      -webkit-flex: 1 1 100%;
+      -ms-flex: 1 1 100%;
+      flex: 1 1 100%;
+    }
 
-    /deep/ .v-grid .fade-out {
+    paper-material .format {
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      font-size: 10px;
+      line-height: 16px;
+      height: 16px;
+      font-weight: 400;
+      color: #616161;
+      margin-top: 4px;
+      text-decoration: none;
+      outline: none;
+      width: 0px;
+      -webkit-flex: 1 1 100%;
+      -ms-flex: 1 1 100%;
+      flex: 1 1 100%;
+    }
+
+    paper-material .author {
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      font-size: 10px;
+      line-height: 16px;
+      height: 16px;
+      font-weight: 400;
+      color: #616161;
+      margin-top: 4px;
+      text-decoration: none;
+      outline: none;
+      width: 0px;
+      -webkit-flex: 1 1 100%;
+      -ms-flex: 1 1 100%;
+      flex: 1 1 100%;
+    }
+
+    .fade-out {
       position: relative;
       white-space: nowrap;
     }
     
-    /deep/ .v-grid .fade-out:after {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 30px;
-    content: "";
-    background-image: -webkit-gradient(linear,left top,right top,color-stop(0%,rgba(255,255,255,0)),color-stop(100%,rgba(255,255,255,1)));
-    background-image: -webkit-linear-gradient(left,rgba(255,255,255,0),rgba(255,255,255,1));
-    background-image: -moz-linear-gradient(left,rgba(255,255,255,0),rgba(255,255,255,1));
-    background-image: -ms-linear-gradient(left,rgba(255,255,255,0),rgba(255,255,255,1));
-    background-image: -o-linear-gradient(left,rgba(255,255,255,0),rgba(255,255,255,1));
-    background: linear-gradient(to right,rgba(255,255,255,0),rgba(255,255,255,1));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#00ffffff',EndColorStr='#ffffff');
-}
+    .fade-out:after {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 30px;
+      content: "";
+      background-image: -webkit-gradient(linear,left top,right top,color-stop(0%,rgba(255,255,255,0)),color-stop(100%,rgba(255,255,255,1)));
+      background-image: -webkit-linear-gradient(left,rgba(255,255,255,0),rgba(255,255,255,1));
+      background-image: -moz-linear-gradient(left,rgba(255,255,255,0),rgba(255,255,255,1));
+      background-image: -ms-linear-gradient(left,rgba(255,255,255,0),rgba(255,255,255,1));
+      background-image: -o-linear-gradient(left,rgba(255,255,255,0),rgba(255,255,255,1));
+      background: linear-gradient(to right,rgba(255,255,255,0),rgba(255,255,255,1));
+      filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#00ffffff',EndColorStr='#ffffff');
+    }
     
-    /deep/ tr {
-      height:220px !important;
-    }
-
-    /deep/ .v-grid {
-      height:30000px !important;
-    }
-
-    /deep/ .v-grid-cell, /deep/ .v-grid-row {
-      height: 300px !important;
-      background-color: inherit !important;
-    }
-
-    /deep/ .v-grid:focus {
-      outline:none !important;
-    }
   </style>
   <template>
-    <uvalib-catalog id="catalog" auto availability directions items="{{items}}" facets="{{facets}}" count="{{count}}" query="{{query}}" page="{{page}}" per-page="30" sort-order="{{sort}}" facet-limits-inc='{"library":"Alderman","format":["Visual Materials","Video Quadraplex","Video Other","VHS","Thesis/Dissertation","Physical Object","Periodical","Other Media","Newspaper","Musical Score","Mixed Materials","Microform","Map","Manuscript","LP","Looseleaf","Large Print","Journal/Magazine","Government Document","Globe","Filmstrip","Film","Equipment","DVD","Computer Resource","Computer Media","CD","Broadside","Braille","Book","Blu-Ray","Atlas","Archive"]}' more="{{more}}" on-uvalib-catalog-fetched-results="catalog_fetched"></uvalib-catalog>
-   
-<!--    
-    <div class="header">
-      <h2 class="title">Recently added <span>{{query}}</span></h2>
-    </div>
--->
+    <uvalib-catalog id="catalog" auto availability directions items="{{items}}" facets="{{facets}}" count="{{count}}" query="{{query}}" page="{{page}}" per-page="30" sort-order="{{sort}}" facet-limits-inc='{"library":"Alderman","format":["Visual Materials","Video Quadraplex","Video Other","VHS","Thesis/Dissertation","Physical Object","Periodical","Other Media","Newspaper","Musical Score","Mixed Materials","Microform","Map","Manuscript","LP","Looseleaf","Large Print","Journal/Magazine","Government Document","Globe","Filmstrip","Film","Equipment","DVD","Computer Resource","Computer Media","CD","Broadside","Braille","Book","Blu-Ray","Atlas","Archive"]}' more="{{more}}" on-uvalib-catalog-fetched-results="catalogFetched"></uvalib-catalog>
     
-<v-grid id="grid">
-  <table>
-    <colgroup>
-      <template is="dom-repeat" items="{{cols}}">
-        <col width="220">
-      </template>
-    </colgroup>
-  </table>
-</v-grid>
-<!--    
-    <v-grid id="grid">
-        <table>
-          <colgroup>
-            <col width="220">
-            <col width="220">
-            <col width="220">
-            <col width="220">
-            <col width="220">
--->
-          <!--
-            <template is="dom-repeat" items="{{cols}}">
-              <col width="220">
-            </template>
-          -->
-<!--          </colgroup> -->
-<!--
-          <tbody>
-          <template is="dom-repeat" items="{{rows}}">
-            <tr style="height:220px">
-              <template is="dom-repeat" items="{{item}}">
-              <td>
-                <paper-material elevation="1">
-                  <div class="image-wrapper">
-                    <div class="image-inner-wrapper"><img class="image" src="{{item.cover_image_url}}" alt=""></div>
-                  </div>
-                  <div class="details">
-                    <div class="details-inner">
-                      <a class="title fade-out tooltip " href="">{{item.title}}</a>
-                      <a class="sub-title fade-out tooltip ">{{item.subtitle}}</a>
+    <template is="dom-repeat" items="{{rows}}" as="row">
+            <div class="row">
+              <template is="dom-repeat" items="{{row}}" as="item">
+                  <paper-material on-tap="getDirections" class="style-scope" elevation="1">
+                    <div class="image-wrapper">
+                      <div class="image-inner-wrapper">
+                        <img src="{{item.cover_image_url}}"/>
+                      </div>
                     </div>
-                  </div>
-                </paper-material>
-              </td>
+                    <div class="details">
+                      <div class="details-inner">
+                        <div class="title fade-out">{{item.title.0}}</div>
+                        <template is="dom-if" if="{{item.subtitle}}">
+                          <div class="sub-title fade-out">{{item.subtitle.0}}</div>
+                        </template>
+                        <div class="format fade-out">
+                          <span>{{item.format.0}}</span> - <span>{{item.published_date.0}}</span>
+                        </div>
+                        <template is="dom-if" if="item.author">
+                          <div class="author fade-out">{{item.author.0}}</div>
+                        </template>
+                      </div>
+                    </div>
+                  </paper-material>
               </template>
-            </tr>
+            </div>
           </template>
-          </tbody>
--->
-<!--
-        </table>
-      </v-grid>
--->
-<!--    <ul>
-      <template is="dom-repeat" items="{{items}}">
-        <li><span class="paper-font-body1">{{item}}</span></li>
-      </template>
-    </ul> -->
   </template>
 
   <script>
+
     (function () {
       Polymer({
         is: 'my-list',
@@ -244,126 +226,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           },
           query: {
             type: String,
-            value: "",
-            observer: "queryChanged"
+            value: '',
+            observer: 'queryChanged'
           },
-//          facet_limits_inc: {
-//            type: Object,
-//            default: {
-//              library: "Alderman",
-//              format: [
-//                "Visual Materials","Video Quadraplex","Video Other","VHS","Thesis/Dissertation",
-//                "Physical Object","Periodical","Other Media","Newspaper","Musical Score",
-//                "Mixed Materials","Microform","Map","Manuscript","LP","Looseleaf","Large Print",
-//                "Journal/Magazine","Government Document","Globe","Filmstrip","Film","Equipment",
-//                "DVD","Computer Resource","Computer Media","CD","Broadside","Braille","Book",
-//                "Blu-Ray","Atlas","Archive"
-//              ]
-//            }
-//          }
-        },
-        attached: function(){
-          this.$.grid.header.hidden=true;
-          this.$.grid.selection.mode="disabled";
+          selectedItem: {
+            type: Object,
+            notify: true
+          }
         },
         ready: function() {
           this.colCount=7;
           this.cols=new Array(this.colCount);
-          this.rows = []; //[[{title:"foo"},{title:"bar"},{title:"baz"},{title:"foobar"},{title:"foobaz"}],
-//              [{title:"foo"},{title:"bar"},{title:"baz"},{title:"foobar"},{title:"foobaz"}],
-//              [{title:"foo"},{title:"bar"},{title:"baz"},{title:"foobar"},{title:"foobaz"}]];
-//          var grid = document.querySelector('v-grid');
-//          grid.header.hidden=true;
-//          grid.addEventListener('select', function(){
-//            alert('selected grid row!');
-//          });
-/*
-          this.items = [
-            'Responsive Web App boilerplate',
-            'Iron Elements and Paper Elements',
-            'End-to-end Build Tooling (including Vulcanize)',
-            'Unit testing with Web Component Tester',
-            'Routing with Page.js',
-            'Offline support with the Platinum Service Worker Elements'
-          ];
-*/
+          this.rows = []; 
+          
         },
         queryChanged: function(){
           this.rows=[];
         },
-//        rows:[[{title:"foo"},{title:"bar"},{title:"baz"},{title:"foobar"},{title:"foobaz"}],
-//              [{title:"foo"},{title:"bar"},{title:"baz"},{title:"foobar"},{title:"foobaz"}],
-//              [{title:"foo"},{title:"bar"},{title:"baz"},{title:"foobar"},{title:"foobaz"}]],
-        catalog_fetched: function(){
-          this.$.catalog.parseAvailbility("Alderman");
+        getDirections: function(e){
+          this.selectedItem = e.model.get('item');
+          this.fire('item-selected');
+        },
+
+        catalogFetched: function(){
+          this.$.catalog.parseAvailbility('Alderman');
           for(var i=0,c; (c=i*this.colCount)>=0 && c<this.items.length; i++) {
-            this.rows.push(this.items.slice(c,c+this.colCount));
+            this.push('rows', this.items.slice(c,c+this.colCount));
           }
-
-
-//this.$.grid.data.source = [ { projectName: "Project A", cost: {estimate: 10000, current: 8000 } },
-//             { projectName: "Project B", cost: {estimate: 20000, current: 11000 } },
-//             { projectName: "Project C", cost: {estimate: 15000, current: 1000 } } ];
-var renderer = function(cell) { 
-  cell.element.innerHTML="";
-  var paper = document.createElement("paper-material");
-  paper.setAttribute("elevation",1);
-  paper.setAttribute("class","stlye-scope");
-  var imgWrp = document.createElement("div");
-  imgWrp.setAttribute("class","image-wrapper");
-  var imgInWrp = document.createElement("div");
-  imgInWrp.setAttribute("class","image-inner-wrapper");
-  var img = document.createElement("img");
-  img.setAttribute("src",cell.data.cover_image_url)
-  imgInWrp.appendChild(img);
-  imgWrp.appendChild(imgInWrp);
-  var det = document.createElement("div");
-  det.setAttribute("class","details");
-  var detIn = document.createElement("div");
-  detIn.setAttribute("class","details-inner");
-  var title = document.createElement("div");
-  title.setAttribute("class","title fade-out");
-  title.appendChild(document.createTextNode(cell.data.title[0]));
-  detIn.appendChild(title);
-  if(cell.data.subtitle && cell.data.subtitle.length) {
-    var subTitle = document.createElement("div");
-    subTitle.setAttribute("class","sub-title fade-out");
-    subTitle.appendChild(document.createTextNode(cell.data.subtitle[0]));
-    detIn.appendChild(subTitle);
-  }
-  det.appendChild(detIn);
-  paper.appendChild(imgWrp);
-  paper.appendChild(det);
-  cell.element.appendChild(paper); 
-};
-
-//<paper-material elevation="1">
-//                  <div class="image-wrapper">
-//                    <div class="image-inner-wrapper"><img class="image" src="{{item.cover_image_url}}" alt=""></div>
-//                  </div>
-//                  <div class="details">
-//                    <div class="details-inner">
-//                      <a class="title fade-out tooltip " href="">{{item.title}}</a>
-//                      <a class="sub-title fade-out tooltip ">{{item.subtitle}}</a>
-//                    </div>
-//                  </div>
-//                </paper-material>
-
-
-for (var i=0; i<this.colCount; i++) {
-  this.$.grid.columns[i].renderer = renderer;
-}
-this.$.grid.data.source = this.rows;
-
-
-//          this.$.grid.data.source = this.rows;
-//          this.$.grid.columns[0].renderer = function(cell) {
-//            cell.element.innerHTML = "<div>Hello</div>";
-            //var img = document.createElement("img");
-            //img.style.width = "24px";
-            //img.setAttribute("src", cell.data);
-            //cell.element.appendChild(img);
-//          }
         }
       });
     })();
