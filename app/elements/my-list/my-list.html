@@ -39,6 +39,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       flex: 1 !important;
       
       cursor: pointer !important;
+
+      max-width: 300px;
+    }
+
+    paper-material.out {
+      opacity: .3;
     }
 
     .row {
@@ -69,7 +75,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       padding: 16px;
       position: relative;
       background-color: white;
-      height: 80px;
+      height: 85px;
     }
 
     paper-material .details-inner {
@@ -180,12 +186,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
   </style>
   <template>
-    <uvalib-catalog id="catalog" auto availability directions items="{{items}}" facets="{{facets}}" count="{{count}}" query="{{query}}" page="{{page}}" per-page="30" sort-order="{{sort}}" facet-limits-inc='{"library":"Alderman","format":["Visual Materials","Video Quadraplex","Video Other","VHS","Thesis/Dissertation","Physical Object","Periodical","Other Media","Newspaper","Musical Score","Mixed Materials","Microform","Map","Manuscript","LP","Looseleaf","Large Print","Journal/Magazine","Government Document","Globe","Filmstrip","Film","Equipment","DVD","Computer Resource","Computer Media","CD","Broadside","Braille","Book","Blu-Ray","Atlas","Archive"]}' more="{{more}}" on-uvalib-catalog-fetched-results="catalogFetched"></uvalib-catalog>
+    <uvalib-catalog id="catalog" auto availability directions items="{{items}}" facets="{{facets}}" count="{{count}}" query="{{query}}" page="{{page}}" per-page="27" sort-order="{{sort}}" facet-limits-inc='{"library":"Alderman","format":["Visual Materials","Video Quadraplex","Video Other","VHS","Thesis/Dissertation","Physical Object","Periodical","Other Media","Newspaper","Musical Score","Mixed Materials","Microform","Map","Manuscript","LP","Looseleaf","Large Print","Journal/Magazine","Government Document","Globe","Filmstrip","Film","Equipment","DVD","Computer Resource","Computer Media","CD","Broadside","Braille","Book","Blu-Ray","Atlas","Archive"]}' search-timeout="1500" more="{{more}}" on-uvalib-catalog-fetched-results="catalogFetched"></uvalib-catalog>
     
     <template is="dom-repeat" items="{{rows}}" as="row">
             <div class="row">
               <template is="dom-repeat" items="{{row}}" as="item">
-                  <paper-material on-tap="getDirections" class="style-scope" elevation="1">
+                  <paper-material on-tap="getDirections" class$="{{itemAvailableClass(item.available)}}" elevation="1">
                     <div class="image-wrapper">
                       <div class="image-inner-wrapper">
                         <img src="{{item.cover_image_url}}"/>
@@ -203,12 +209,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <template is="dom-if" if="item.author">
                           <div class="author fade-out">{{item.author.0}}</div>
                         </template>
+                        <div class="callNum">{{item.call_number.0}}</div>
                       </div>
                     </div>
                   </paper-material>
+                  
               </template>
+
+              <template is="dom-if" if="{{isEnd(index,rows)}}">
+                  <paper-material elevation="1">
+                    <div class="more">More Results</div>
+                  </paper-material>
+              </template>
+
             </div>
-          </template>
+    </template>
   </template>
 
   <script>
@@ -234,23 +249,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             notify: true
           }
         },
+        isEnd: function(index, arr) {
+          return (index == arr.length-1);
+        },
+        itemAvailableClass: function(available) {
+          if (available) return 'in';
+          else return 'out';
+        },
         ready: function() {
           this.colCount=7;
           this.cols=new Array(this.colCount);
-          this.rows = []; 
-          
+          this.rows = [];
         },
         queryChanged: function(){
           this.rows=[];
         },
         getDirections: function(e){
           this.selectedItem = e.model.get('item');
-          this.fire('item-selected');
+          if (this.selectedItem.available)
+            this.fire('item-selected');
         },
-
         catalogFetched: function(){
           this.$.catalog.parseAvailbility('Alderman');
-          for(var i=0,c; (c=i*this.colCount)>=0 && c<this.items.length; i++) {
+          for(var i=0,c; (c=i*this.colCount)>=0 && this.items && c<this.items.length; i++) {
             this.push('rows', this.items.slice(c,c+this.colCount));
           }
         }

@@ -12,29 +12,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <script>
   window.addEventListener('WebComponentsReady', function() {
 
+    app.resultsScrollTop = 0;
+
     // We use Page.js for routing. This is a Micro
     // client-side router inspired by the Express router
     // More info: https://visionmedia.github.io/page.js/
     page('/', function () {
       app.route = 'home';
       app.pageTitle = 'Kiosk Home';
+      document.getElementById('mainContainer').scrollTop=0;
     });
 
     page('/results', function () {
       app.route = 'results';
       app.pageTitle = 'Books';
+      document.getElementById('mainContainer').scrollTop=app.resultsScrollTop;
+      app.selectedItem = undefined;
     });
 
-    page('/results/:id', function (data) {
-      app.route = 'map';
-      app.pageTitle = 'Find Book';
-      app.params = data.params;
-    });
+//    page('/results/:id', function (data) {
+//      app.route = 'map';
+//      app.pageTitle = 'Find Book';
+//      app.params = data.params;
+//    });
 
     page('/map', function(){
       app.route = 'map';
       app.pageTitle = 'Library Map';
-      window.scrollTo(0,0);
+      document.getElementById('mainContainer').scrollTop=0;
       document.getElementById('floorplan').SVGhelpers();
     });
 

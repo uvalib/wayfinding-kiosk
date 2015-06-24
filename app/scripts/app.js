@@ -33,6 +33,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     var toolbar = document.querySelector('#mainToolbar');
     toolbar.bottomJustify = 'around';
+
+    var loading = document.getElementById('searchmodal');
+    loading.noAutoFocus=true;
+    loading.noCancelOnEscKey=true;
+    loading.noCancelOnOutsideClick=true;
   });
 
   app.back2results = function(){
@@ -41,6 +46,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   app.itemSelected = function(){
     console.log('item has been selected, route to directions');
+    app.resultsScrollTop=document.getElementById('mainContainer').scrollTop;
     page('/map');
   };
 
@@ -66,6 +72,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     document.getElementById('searchmodal').close();
   };
 
+  app.isTrue = function(val) { 
+    return !!(val);
+  }
 
 
 })(document);
