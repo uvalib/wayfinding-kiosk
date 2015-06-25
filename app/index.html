@@ -159,14 +159,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <section id="map-section" data-route="map">
               <template is="dom-if" if="{{isTrue(selectedItem)}}">
                 <paper-material elevation="1" id="directions-box">
-                  <paper-button tabindex="0" raised on-tap="back2results"><iron-icon icon="arrow-back"></iron-icon>Back to Results</paper-button>
+                  <paper-button class="backbutton" tabindex="0" raised on-tap="back2results"><iron-icon icon="arrow-back"></iron-icon>Back to Results</paper-button>
                   <div class="title">{{selectedItem.title.0}}</div>
                   <div class="subtitle">{{selectedItem.subtitle.0}}</div>
                   <div class="thumb"><img src="{{selectedItem.cover_image_url}}" /></div>
-                  <div class="format"><span>{{selectedItem.format.0}}</span> - <span>{{selectedItem.published_date.0}}</span></div>
-                  <div class="author">{{selectedItem.author.0}}</div>
-                  <div class="callnumber">{{selectedItem.call_number.0}}</div>
-                  
+                  <div class="format"><span class="label">Format:</span><span>{{selectedItem.format.0}}</span></div>
+                  <div class="date"><span class="label">Publication Date:</span><span>{{selectedItem.published_date.0}}</span></div>
+                  <div class="author"><span class="label">Author:</span><span>{{selectedItem.author.0}}</div>
+                  <div class="callnumber"><span class="label">Call Number:</span><span>{{selectedItem.call_number.0}}</div>
+                  <hr />
                   <uvalib-directions id="directions" item="{{selectedItem}}" steps="{{steps}}" selectedstep="{{selectedStep}}" floors="{{floors}}"
                   selectedFloor="{{selectedFloor}}"></uvalib-directions>
                 </paper-material>
