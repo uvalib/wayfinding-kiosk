@@ -250,11 +250,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           }
         },
         isEnd: function(index, arr) {
-          return (index == arr.length-1);
+          return (index === arr.length-1);
         },
         itemAvailableClass: function(available) {
-          if (available) return 'in';
-          else return 'out';
+          if (available) { return 'in'; }
+          else { return 'out'; }
         },
         ready: function() {
           this.colCount=7;
@@ -266,8 +266,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
         getDirections: function(e){
           this.selectedItem = e.model.get('item');
-          if (this.selectedItem.available)
+          if (this.selectedItem.available) {
             this.fire('item-selected');
+          }
         },
         catalogFetched: function(){
           this.$.catalog.parseAvailbility('Alderman');

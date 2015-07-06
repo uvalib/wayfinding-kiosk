@@ -58,6 +58,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
   };
 
+  app.focussearch = function(){
+    document.getElementById('searchquery').focus();
+  };
+
   app.onSearchFocus = function(){
     console.log('search box focused!');
     page('/results');
@@ -74,7 +78,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   app.isTrue = function(val) { 
     return !!(val);
-  }
+  };
 
 
 })(document);

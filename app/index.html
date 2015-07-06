@@ -69,17 +69,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!-- Drawer Content -->
         <paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
-          <a data-route="home" href="/">
+          <a data-route="home" href="/wayfinding/">
             <iron-icon icon="account-balance"></iron-icon>
             <span>Home</span>
           </a>
 
-          <a data-route="users" href="/results">
+          <a data-route="users" href="/wayfinding/results">
             <iron-icon icon="book"></iron-icon>
             <span>Books</span>
           </a>
 
-          <a data-route="map" href="/map">
+          <a data-route="map" href="/wayfinding/map">
             <iron-icon icon="maps:map"></iron-icon>
             <span>Map</span>
           </a>
@@ -112,7 +112,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <!-- Application name -->
           <div class="middle paper-font-display2 app-name">{{pageTitle}}</div>
           
-          <div id="search-lib" class="bottom"><iron-icon class="search-icon" icon="search" aria-hidden="true" alt=""></iron-icon><input is="iron-input" class="material-search label-input-label" role="search" placeholder="Find a book in Alderman Library" aria-label="Search music" on-focus="onSearchFocus" bind-value="{{query}}"></div>
+          <div id="search-lib" class="bottom"><iron-icon class="search-icon" icon="search" aria-hidden="true" alt=""></iron-icon><input id="searchquery" is="iron-input" class="material-search label-input-label" role="search" placeholder="Find a book in Alderman Library" aria-label="Search music" on-focus="onSearchFocus" bind-value="{{query}}"></div>
           <!--
           <div class="bottom" id="search-lib">
             <iron-icon icon="search"></iron-icon>
@@ -128,14 +128,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             <section data-route="home">
               <paper-material elevation="1">
-                <my-greeting></my-greeting>
-
-                <p class="paper-font-body2">Looking for more Web App layouts? Check out our <a href="https://github.com/PolymerElements/app-layout-templates">layouts</a> collection. You can also <a href="http://polymerelements.github.io/app-layout-templates/">preview</a> them live.</p>
+                <p class="paper-font-body2">This is the Library's new experimental Wayfinding Kiosk.  Search for the item you wish to find in Alderman by entering your search terms or call number into the search box at the top <paper-button raised  on-tap="focussearch">Start Search</paper-butt</p>
               </paper-material>
+              <!--
               <paper-material elevation="1">
                 <p class="paper-font-body2">This is another card.</p>
               </paper-material>
-
+              -->
             </section>
 
             <section data-route="results">
@@ -168,12 +167,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   <div class="author"><span class="label">Author:</span><span>{{selectedItem.author.0}}</div>
                   <div class="callnumber"><span class="label">Call Number:</span><span>{{selectedItem.call_number.0}}</div>
                   <hr />
-                  <uvalib-directions id="directions" item="{{selectedItem}}" steps="{{steps}}" selectedstep="{{selectedStep}}" floors="{{floors}}"
-                  selectedFloor="{{selectedFloor}}"></uvalib-directions>
+                  <uvalib-directions id="directions" item="{{selectedItem}}" steps="{{steps}}" selected-step="{{selectedStep}}" floors="{{floors}}"
+                  selected-floor="{{selectedFloor}}"></uvalib-directions>
                 </paper-material>
               </template>
               <paper-material elevation="1" id="floorplan-box">
-                <uvalib-floorplan id="floorplan" selectedFloor="{{selectedFloor}}" floors="{{floors}}" selectedstep="{{selectedStep}}" dests="{{steps}}"></uvalib-floorplan>
+                <uvalib-floorplan id="floorplan" selected-floor="{{selectedFloor}}" floors="{{floors}}" selected-step="{{selectedStep}}" dests="{{steps}}"></uvalib-floorplan>
               </paper-material>
             </section>
 
