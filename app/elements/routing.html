@@ -31,6 +31,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       app.pageTitle = 'Books';
       document.getElementById('mainContainer').scrollTop=app.resultsScrollTop;
       app.selectedItem = undefined;
+      app.resetHomeTimer(5);
     });
 
 //    page('/results/:id', function (data) {
@@ -44,16 +45,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       app.pageTitle = 'Library Map';
       document.getElementById('mainContainer').scrollTop=0;
       document.getElementById('floorplan').SVGhelpers();
+      app.resetHomeTimer(5);
     });
 
     page('/help', function () {
       app.route = 'help';
       app.pageTitle = 'Help';
+      app.resetHomeTimer(5);
     });
 
     page('/feedback', function(){
       app.route = 'feedback';
       app.pageTitle = 'Feedback';
+      app.resetHomeTimer(5);
     });
 
     // add #! before urls

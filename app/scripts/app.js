@@ -80,5 +80,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     return !!(val);
   };
 
+  app.resetHomeTimer = function(min) {
+    if (app.timer) clearTimeout(app.timer);
+    app.timer = setTimeout(function(){ page('/'); }, min*60*1000);
+  }
+
 
 })(document);
