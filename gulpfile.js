@@ -234,7 +234,7 @@ gulp.task('default', ['clean'], function (cb) {
     ['copy', 'styles'],
     'elements',
 //    ['jshint', 'images', 'fonts', 'html'],
-    ['images', 'fonts', 'html'],
+    ['fonts', 'html'],
     'vulcanize', 'precache',
     cb);
 });
