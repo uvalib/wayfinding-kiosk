@@ -128,7 +128,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             <section data-route="home">
               <paper-material elevation="1">
-                <p class="paper-font-body2">This is the Library's new experimental Wayfinding Kiosk.  Search for the item you wish to find in Alderman by entering your search terms or call number into the search box at the top <paper-button raised  on-tap="focussearch">Start Search</paper-butt</p>
+                <h2>Find a book in Alderman: <paper-button id="start-button" raised on-tap="focussearch">Start Search</paper-button></h2>
+                <p class="paper-font-body2">This is the Library's new experimental Wayfinding Kiosk.  Search for the item you wish to find in Alderman by entering your search terms or call number into the search box at the top.</p>
               </paper-material>
               <!--
               <paper-material elevation="1">
@@ -155,7 +156,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </paper-material>
             </section>
 
-            <section id="map-section" data-route="map">
+            <section id="map-section" data-route="map" class="fit">
               <template is="dom-if" if="{{isTrue(selectedItem)}}">
                 <paper-material elevation="1" id="directions-box">
                   <paper-button class="backbutton" tabindex="0" raised on-tap="back2results"><iron-icon icon="arrow-back"></iron-icon>Back to Results</paper-button>
