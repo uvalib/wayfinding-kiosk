@@ -28,8 +28,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   // See https://github.com/Polymer/polymer/issues/1381
   window.addEventListener('WebComponentsReady', function() {
     // Ensure the drawer is hidden on desktop/tablet
-    var drawerPanel = document.querySelector('#paperDrawerPanel');
-    drawerPanel.forceNarrow = true;
+//    var drawerPanel = document.querySelector('#paperDrawerPanel');
+//    drawerPanel.forceNarrow = true;
 
     var toolbar = document.querySelector('#mainToolbar');
     toolbar.bottomJustify = 'around';
