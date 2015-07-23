@@ -70,6 +70,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   app.startSearchModal = function(){
     console.log('started a catalog fetch');
     document.getElementById('searchmodal').open();
+
   };
   app.endSearchModal = function(){
     console.log('ended a catalog fetch');
@@ -82,8 +83,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   app.resetHomeTimer = function(min) {
     if (app.timer) clearTimeout(app.timer);
-    app.timer = setTimeout(function(){ page('/'); }, min*60*1000);
+    app.timer = setTimeout(function(){ 
+      page('/'); 
+      // Reload the page to get any changes (many updates coming)
+      document.location.reload(true);
+    }, min*60*1000);
   }
 
+  document.onmousedown=app.disableclick;
+  app.disableclick = function(event) {
+    if(event.button == 2) {
+      console.log('right click disabled!');
+      return false;
+    }
+  }
 
 })(document);
