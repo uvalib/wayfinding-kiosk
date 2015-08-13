@@ -23,13 +23,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     page('/', function () {
       app.route = 'home';
       app.pageTitle = 'Kiosk Home';
-      document.getElementById('mainContainer').scrollTop=0;
+//      document.getElementById('mainContainer').scrollTop=0;
+      document.querySelector('.content').scrollTop=0;
     });
 
     page('/results', function () {
       app.route = 'results';
       app.pageTitle = 'Books';
-      document.getElementById('mainContainer').scrollTop=app.resultsScrollTop;
+//      document.getElementById('mainContainer').scrollTop=app.resultsScrollTop;
+      document.querySelector('.content').scrollTop=app.resultsScrollTop;
       app.selectedItem = undefined;
       app.resetHomeTimer(5);
     });
@@ -43,7 +45,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     page('/map', function(){
       app.route = 'map';
       app.pageTitle = 'Library Map';
-      document.getElementById('mainContainer').scrollTop=0;
+//      document.getElementById('mainContainer').scrollTop=0;
+      document.querySelector('.content').scrollTop=0;
       document.getElementById('floorplan').SVGhelpers();
       app.resetHomeTimer(5);
     });

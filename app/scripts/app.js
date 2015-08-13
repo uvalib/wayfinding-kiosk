@@ -49,7 +49,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   app.itemSelected = function(){
     console.log('item has been selected, route to directions');
-    app.resultsScrollTop=document.getElementById('mainContainer').scrollTop;
+//    app.resultsScrollTop=document.getElementById('').scrollTop;
+    app.resultsScrollTop=document.querySelector('.content').scrollTop;
     page('/map');
   };
 
