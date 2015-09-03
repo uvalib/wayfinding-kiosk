@@ -95,7 +95,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this.selectedFloor='4';
           }
         },
-        notAvailableLocations: ['CHECKEDOUT','INTERNET'],
+        notAvailableLocations: ['CHECKEDOUT','INTERNET','ON-ORDER'],
         getDirections: function(){
           var holding = _.find(this.item.holdings, function(holding){
             return holding['library_code']===this.library.toUpperCase() && !holding.shadowed;
