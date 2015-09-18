@@ -6,8 +6,7 @@
     "paper-elements": "PolymerElements/paper-elements",
     "platinum-elements": "PolymerElements/platinum-elements",
     "neon-elements": "PolymerElements/neon-elements",
-    "page": "visionmedia/page.js#~1.6.3",
-    "vaadin-components": "master",
+    "page": "visionmedia/page.js",
     "uvalib-catalog": "uvalib-components/uvalib-catalog",
     "uvalib-floorplan": "uvalib-components/uvalib-floorplan"
   },
