@@ -94,4 +94,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
   }
 
+  app.checkForEnter = function(e) {
+    if (e.keyCode === 13) {
+      app.query = e.target.value;
+    }
+  }
+
+  app.inputBlur = function(e){
+    app.query = e.target.value
+  }
+
 })(document);
